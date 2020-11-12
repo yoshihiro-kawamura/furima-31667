@@ -2,15 +2,16 @@
 
 ## users テーブル
 
-|  Column         |  Type   |  Options         |
-| --------------- | ------- | ---------------- |
-| email           | string  |   null: false    | 
-| password        | string  |   null: false    |
-| nickname        | string  |   null: false    |
-| first_name      | string  |   null: false    |
-| last_name       | string  |   null: false    |
-| last_name_kana  | string  |   null: false    |
-| first_name_kana | string  |   null: false    |
+|  Column            |  Type   |  Options         |
+| ------------------ | ------- | ---------------- |
+| email              | string  |   null: false    | 
+| encrypted_password | string  |   null: false    |
+| nickname           | string  |   null: false    |
+| first_name         | string  |   null: false    |
+| last_name          | string  |   null: false    |
+| last_name_kana     | string  |   null: false    |
+| first_name_kana    | string  |   null: false    |
+| birthday           |  date   |   null: false    |
 
 ### Association
 - has_many :items
@@ -18,30 +19,28 @@
 
 ## items テーブル
 
-|  Column          |  Type      |  Options         |
-| ---------------- | ---------- | ---------------- |
-| item_name        | text       |   null: false    | 
-| item_example     | text       |   null: false    |
-| category         | text       |   null: false    |
-| item_condition   | text       |   null: false    |
-| shipping_charges | text       |   null: false    |
-| area             | text       |   null: false    |
-| day              | date       |   null: false    |
-| price            | integer    |   null: false    |
-| image            |        ActiveStorage          |
-| user             | references |                  |
+|  Column          |  Type      |  Options            |
+| ---------------- | ---------- | ------------------- |
+| item_name        | string     |   null: false       |  
+| item_example     | text       |   null: false       |
+| category         | integer    |   null: false       |
+| item_condition   | integer    |   null: false       |
+| shipping_charges | integer    |   null: false       |
+| area             | integer    |   null: false       |
+| day              | integer    |   null: false       |
+| price            | integer    |   null: false       |
+| user             | integer    |  foreign_key: true  |
 
 ### Association
 - belongs_to :user
-- has_one :buys
+- has_one :buy
 
 ## buys テーブル
 
-|  Column     |  Type           |  Options    |
-| ----------- | --------------- | ----------- |
-| credit_card | integer         | null: false |
-| expiration  | integer         | null: false |
-| secrity     | integer         | null: false |
+|  Column     |  Type           |  Options           |
+| ----------- | --------------- | ------------------ |
+| user        | integer         |  foreign_key: true |
+| item        | integer         |  foreign_key: true |
 
 ### Association
 - belongs_to :user
