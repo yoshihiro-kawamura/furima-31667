@@ -21,8 +21,8 @@
 
 |  Column             |  Type      |  Options            |
 | ------------------- | ---------- | ------------------- |
-| item_name           | string     |   null: false       |  
-| item_example        | text       |   null: false       |
+| name                | string     |   null: false       |  
+| example             | text       |   null: false       |
 | category_id         | integer    |   null: false       |
 | item_condition_id   | integer    |   null: false       |
 | shipping_charges_id | integer    |   null: false       |
@@ -55,7 +55,7 @@
 | prefecture_id | integer | null: false |
 | city          | string  | null: false |
 | house_number  | string  | null: false |
-| building_name | string  | null: false |
+| building_name | string  |             |
 | phone_number  | string  | null: false |
 
 ### Association
