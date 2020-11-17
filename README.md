@@ -25,7 +25,7 @@
 | example             | text       |   null: false       |
 | category_id         | integer    |   null: false       |
 | item_condition_id   | integer    |   null: false       |
-| shipping_charges_id | integer    |   null: false       |
+| shipping_charge_id | integer    |   null: false       |
 | area_id             | integer    |   null: false       |
 | day_id              | integer    |   null: false       |
 | price               | integer    |   null: false       |
