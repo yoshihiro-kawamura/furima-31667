@@ -6,12 +6,12 @@ class User < ApplicationRecord
   has_many :items
   has_many :buys
 
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
+  # VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{6,}+\z/i.freeze
   JAPANESE_REGEX = /\A(?:\p{Hiragana}|\p{Katakana}|[一-龠々])+\z/.freeze
   JAPANESE_KATAKANA_REGEX = /[\p{katakana} ー－&&[^ -~｡-ﾟ]]+/.freeze
   with_options presence: true do
-    validates :email, uniqueness: true, format: { with: User::VALID_EMAIL_REGEX }
+    # validates :email, uniqueness: true, format: { with: User::VALID_EMAIL_REGEX }
     validates :password, format: { with: User::VALID_PASSWORD_REGEX }
     validates :birthday
     validates :nickname
