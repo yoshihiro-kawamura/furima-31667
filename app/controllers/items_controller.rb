@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
     # @itemを@itemsにする。その理由は複数のレコードを取得するため、＠Itemだと1つしか持ってこれない
     # orderメソッドは画像を新しい順にならばせたいから,imageを入力するとErrorになってしまう。
     # orderメソッドにimageを入力しないで、日時を表すものにすれば投稿順に表示してくれる。
-    @items = Item.all.order("created_at DESC")
+    @items = Item.includes(:user).order("created_at DESC")
   end
 
   def new
