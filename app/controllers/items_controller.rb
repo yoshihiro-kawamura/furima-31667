@@ -3,7 +3,9 @@ class ItemsController < ApplicationController
 
   def index
     # @itemを@itemsにする。その理由は複数のレコードを取得するため、＠Itemだと1つしか持ってこれない
-    @items = Item.all
+    # orderメソッドは画像を新しい順にならばせたいから,imageを入力するとErrorになってしまう。
+    # orderメソッドにimageを入力しないで、日時を表すものにすれば投稿順に表示してくれる。
+    @items = Item.all.order("created_at DESC")
   end
 
   def new
