@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_item, only: [:show, :edit, :update]
-  
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+
   def index
     # @itemを@itemsにする。その理由は複数のレコードを取得するため、＠Itemだと1つしか持ってこれない
     # orderメソッドは画像を新しい順にならばせたいから,imageを入力するとErrorになってしまう。
@@ -40,6 +40,12 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
+  end
+
+
+  def destroy
+    @item.destroy
+    redirect_to root_path
   end
 
   private
