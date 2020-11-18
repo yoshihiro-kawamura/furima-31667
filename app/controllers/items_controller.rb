@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_tweet, only: [:show, :edit]
+  before_action :set_tweet, only: [:show, :edit, :update]
   
   def index
     # @itemを@itemsにする。その理由は複数のレコードを取得するため、＠Itemだと1つしか持ってこれない
@@ -35,7 +35,6 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
     if @item.update(item_params)
       redirect_to item_path
     else
