@@ -22,5 +22,4 @@ class Item < ApplicationRecord
     validates :image
   end
   validates_inclusion_of :price, in: 300..9_999_999, message: 'Out of setting range'
-
 end
