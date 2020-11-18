@@ -62,42 +62,42 @@ describe User do
       it 'カテゴリーの番号1番だと登録できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category must be other than 1")
+        expect(@item.errors.full_messages).to include('Category must be other than 1')
       end
       it '商品の状態の番号1番だと登録できない' do
         @item.item_condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Item condition must be other than 1")
+        expect(@item.errors.full_messages).to include('Item condition must be other than 1')
       end
       it '配送料の負担の番号1番だと登録できない' do
         @item.shipping_charge_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping charge must be other than 1")
+        expect(@item.errors.full_messages).to include('Shipping charge must be other than 1')
       end
       it '発送元地域の番号1番だと登録できない' do
         @item.area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Area must be other than 1")
+        expect(@item.errors.full_messages).to include('Area must be other than 1')
       end
       it '発送までの日数の番号1番だと登録できない' do
         @item.day_id = 1
         @item.valid?
-        expect(@item.errors.full_messages).to include("Day must be other than 1")
+        expect(@item.errors.full_messages).to include('Day must be other than 1')
       end
       it 'userが紐付いていないと保存できないこと' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
       it '金額が300円以下だと登録できない' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it '金額が半角数字でないと登録できない' do
         @item.price = 'あああ'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price Out of setting range")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
     end
   end
