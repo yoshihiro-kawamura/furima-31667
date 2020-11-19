@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
-  before_action :set_item, only: [:show, :edit, :update]
-  
+  before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+
   def index
     # @itemを@itemsにする。その理由は複数のレコードを取得するため、＠Itemだと1つしか持ってこれない
     # orderメソッドは画像を新しい順にならばせたいから,imageを入力するとErrorになってしまう。
@@ -27,6 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    #出品者とログインしている者が一致していないと編集画面に遷移できない
     if @item.user == current_user
       render :edit
     else
@@ -42,6 +43,14 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    if @item.user == current_user
+      @item.destroy
+      redirect_to root_path
+    else
+      render :show
+  end
+
   private
 
   def item_params
@@ -52,5 +61,4 @@ class ItemsController < ApplicationController
   def set_item
     @item = Item.find(params[:id])
   end
-
 end
