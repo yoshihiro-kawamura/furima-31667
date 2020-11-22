@@ -4,7 +4,14 @@ class BuysController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @item_destination = ItemDestination.new
-  end
+    # ログインユーザーとItem出品者が同じならトップページへ繊維する。
+    if @item.user == current_user
+      redirect_to root_path
+    else
+      render :index
+    end
+
+  end 
 
   def create
     @item = Item.find(params[:item_id])
