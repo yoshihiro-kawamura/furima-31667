@@ -1,3 +1,4 @@
+// JSを使う際はapplication.jsに記述しなければならない
 window.addEventListener('load', () => {
   //①まずJSを動かす記述（Ajaxappに書いてある↑
   // ②価格入力欄のidを手がかりに変数にconstで代入する

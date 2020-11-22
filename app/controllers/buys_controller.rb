@@ -16,6 +16,7 @@ class BuysController < ApplicationController
     @item_destination = ItemDestination.new(destination_params)
     if @item_destination.valid?
       pay_item
+      # このsaveは通常のsaveとは違い、保存じゃなくてformオブジェクトのsaveに遷移する
       @item_destination.save
       redirect_to root_path
     else
@@ -30,12 +31,13 @@ class BuysController < ApplicationController
   end
 
   def destination_params
-    # mergeの左側の値がフォームオブジェクトに送られている
+    # permitはそのまま全て送られ、mergeの左側の値がフォームオブジェクトに送られている
     params.require(:item_destination).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    # ↓ここでPAY.jpに送られている
     Payjp::Charge.create(
       # これが使用できるのは、set_itemで@itemにデータを取って来ているため使える。
       amount: @item.price, # 商品の値段

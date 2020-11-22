@@ -1,3 +1,5 @@
+// JSを使う際はapplication.jsに記述しなければならない
+// JSはまず、使う値を指定してあげる文を書いて、その後に使えるようにしてあげなければならない
 const pay = () => {
   Payjp.setPublicKey(process.env.PAYJP_PUBLIC_KEY); // PAY.JPテスト公開鍵
   const form = document.getElementById("charge-form");
