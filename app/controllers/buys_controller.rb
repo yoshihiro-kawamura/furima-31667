@@ -5,10 +5,8 @@ class BuysController < ApplicationController
   def index
     @item_destination = ItemDestination.new
     # ログインユーザーとItem出品者が同じならトップページへ繊維する。
-    if @item.user == current_user
+    if @item.user == current_user && @item.buy != nil
       redirect_to root_path
-    else
-      render :index
     end
 
   end 
@@ -26,6 +24,10 @@ class BuysController < ApplicationController
 
   private
 
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
+
   def destination_params
     # mergeの左側の値がフォームオブジェクトに送られている
     params.require(:item_destination).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :phone_number ).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
@@ -38,10 +40,6 @@ class BuysController < ApplicationController
       card: destination_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
-  end
-
-  def set_item
-    @item = Item.find(params[:id])
   end
 
 end
