@@ -1,8 +1,8 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  before_action :set_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @item_destination = ItemDestination.new
     # ログインユーザーとItem出品者が同じならトップページへ繊維する。
     if @item.user == current_user
@@ -14,7 +14,6 @@ class BuysController < ApplicationController
   end 
 
   def create
-    @item = Item.find(params[:item_id])
     @item_destination = ItemDestination.new(destination_params)
     if @item_destination.valid?
       pay_item
@@ -40,4 +39,9 @@ class BuysController < ApplicationController
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
 end
