@@ -1,11 +1,15 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!, only: [:index]
+  # 1つにまとめてあげる可読性を高めるために
   before_action :set_item, only: [:index, :create]
 
   def index
     @item_destination = ItemDestination.new
-    # ログインユーザーとItem出品者が同じならトップページへ繊維する。
-    redirect_to root_path if @item.user == current_user || !@item.buy.nil?
+    # ログインユーザーとItem出品者が同じならroot_pathへ遷移する。
+    # または、Itemがbuyにいればroot pathへ遷移される（つまり、購入されている商品の購入ページに遷移しようとするとroot pathへ遷移されるという意味）
+    if @item.user == current_user || @item.buy != nil
+      redirect_to root_path 
+    end
   end
 
   def create
@@ -33,7 +37,9 @@ class BuysController < ApplicationController
   def pay_item
     Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
+      # これが使用できるのは、set_itemで@itemにデータを取って来ているため使える。
       amount: @item.price, # 商品の値段
+      # 色々な表現方法があるが、今回は、destination_paramsにbinding.pryをかけてその中にtokenがあったので、そこから取得してきた。
       card: destination_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
