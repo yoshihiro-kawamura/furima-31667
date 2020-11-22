@@ -9,6 +9,10 @@ describe User do
       it 'すべての項目が存在すれば登録できる' do
         expect(@item_destination).to be_valid
       end
+      it '建物名がなくても購入できる' do
+        @item_destination.building_name = ''
+        expect(@item_destination).to be_valid
+      end
     end
 
     context '購入がうまくいかないとき' do
@@ -18,12 +22,12 @@ describe User do
         expect(@item_destination.errors.full_messages).to include("Postal code can't be blank")
       end
       it '都道府県が空だと登録できない' do
-        @item_destination.prefecture_id = ""
+        @item_destination.prefecture_id = ''
         @item_destination.valid?
         expect(@item_destination.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '市町村が空だと登録できない' do
-        @item_destination.city = ""
+        @item_destination.city = ''
         @item_destination.valid?
         expect(@item_destination.errors.full_messages).to include("City can't be blank")
       end
@@ -38,9 +42,9 @@ describe User do
         expect(@item_destination.errors.full_messages).to include("Phone number can't be blank")
       end
       it '郵便番号が半角数字・ハイフンどちらとも満たしていないと登録できない' do
-        @item_destination.postal_code = 1111111
+        @item_destination.postal_code = 1_111_111
         @item_destination.valid?
-        expect(@item_destination.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@item_destination.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it '都道府県の番号が0番だと登録できない' do
         @item_destination.prefecture_id = 0
@@ -48,7 +52,7 @@ describe User do
         expect(@item_destination.errors.full_messages).to include("Prefecture can't be blank")
       end
       it '電話番号は半角数字・11文字でないと登録できない' do
-        @item_destination.phone_number = 123456789123
+        @item_destination.phone_number = 123_456_789_123
         @item_destination.valid?
         expect(@item_destination.errors.full_messages).to include("Phone number can't be blank")
       end

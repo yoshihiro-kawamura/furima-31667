@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    #出品者とログインしている者が一致していないと編集画面に遷移できない
+    # 出品者とログインしている者が一致していないと編集画面に遷移できない
     if @item.user == current_user
       render :edit
     else
