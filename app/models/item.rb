@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :category_id,          numericality: { other_than: 1 }
     validates :item_condition_id,    numericality: { other_than: 1 }
     validates :shipping_charge_id,   numericality: { other_than: 1 }
-    validates :area_id,              numericality: { other_than: 1 }
+    validates :area_id,              numericality: { other_than: 0 }
     validates :day_id,               numericality: { other_than: 1 }
     validates :price
     validates :image
