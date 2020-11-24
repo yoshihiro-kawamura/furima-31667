@@ -15,4 +15,3 @@ window.addEventListener('load', () => {
   profit.innerHTML = profit_price
 })
 });
-
