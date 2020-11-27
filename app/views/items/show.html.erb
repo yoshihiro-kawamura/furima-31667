@@ -16,6 +16,7 @@
       </div> 
       <%# //商品が売れている場合は、sold outを表示しましょう %>
     </div>
+
     <div class="item-price-box">
       <span class="item-price">
         <%= @item.price%>
@@ -48,6 +49,18 @@
     </div>
     <table class="detail-table">
       <tbody>
+        <tr>
+          <th class="detail-item">タグ</th>
+          <td class="detail-value">
+            <ul class="tag">
+              <li class="tag-list">
+                <% @item.tags.each do |tag| %>
+                  #<%= tag.tagname %>
+                <% end %>
+              </li>
+            </ul> 
+          </td>
+        </tr>
         <tr>
           <th class="detail-item">出品者</th>
           <td class="detail-value"><%= @item.user.nickname %></td>
