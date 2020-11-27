@@ -5,9 +5,8 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with model: @item, url: items_path, local: true do |f| %>
-
-    <%= render 'shared/error_messages', model: f.object %>
+    <%= form_with model: @itemtagform, url: items_path, local: true do |f| %>
+    <%# <%= render 'shared/error_messages', model: f.object %>
     
     <%# 出品画像 %>
     <div class="img-upload">
@@ -38,6 +37,14 @@
         </div>
         <%= f.text_area :example, class:"items-text", id:"item-info", placeholder:"商品の説明（必須 1,000文字まで）（色、素材、重さ、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。" ,rows:"7" ,maxlength:"1000" %>
       </div>
+    </div>
+    <div class="tag-field", id='tag-field'>
+      <div class="weight-bold-text">
+        タグ
+      </div>
+      <%= f.text_field :tagname, class:"items-text", placeholder:"タグ名を記載してください" %>
+    </div>
+    <div id='tag-area'>
     </div>
     <%# /商品名と商品説明 %>
 
