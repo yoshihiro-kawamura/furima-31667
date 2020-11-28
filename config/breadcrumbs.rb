@@ -9,10 +9,11 @@ end
 crumb :root do
   link "Home", root_path
 end   
-
-# crumb :root do
-#   link "Home", root_path
-# end   
+ 
+crumb :item_new do
+  link "商品出品", new_item_path
+  parent :root
+end
 
 crumb :item_show do
   link "商品詳細", item_path
@@ -23,6 +24,12 @@ crumb :item_edit do
   link "商品編集", edit_item_path
   parent :item_show
 end
+
+# crumb :item_buy do
+#   link "商品編集", item_buys_path
+#   parent :item_show
+# end
+
 
 
 
