@@ -11,7 +11,6 @@ class ItemTagForm
     validates :shipping_charge_id,   numericality: { other_than: 1 , message: 'を入力してください'}
     validates :area_id,              numericality: { other_than: 0 , message: 'を入力してください'}
     validates :day_id,               numericality: { other_than: 1 , message: 'を入力してください'}
-    validates :price
     validates :image
   end
   
