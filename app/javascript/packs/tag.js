@@ -1,10 +1,10 @@
 // pathを取得・変更するプロバティ
 if (location.pathname.match("items/new")){
   document.addEventListener("DOMContentLoaded", () => {
-    const inputElement = document.getElementById("tagname");
+    const inputElement = document.getElementById("item_tag_form_tagname");
     // なにかのKeyを話した時に発生するイベント
     inputElement.addEventListener("keyup", () => {
-      const tagname = document.getElementById("tagname").value;
+      const tagname = document.getElementById("item_tag_form_tagname").value;
       // XMLHttpRequestとは、サーバーにHTTPリクエストを非同期で行える（つまりページの更新なしにサーバーからデータを受け取ったりできる）
       const XHR = new XMLHttpRequest();
       // 第一引数にHTTPメソッド、第二引数にURL、第三引数には非同期通信であることを示すためにtrue
@@ -30,7 +30,7 @@ if (location.pathname.match("items/new")){
             searchResult.appendChild(childElement);
             const clickElement = document.getElementById(tag.id);
             clickElement.addEventListener("click", () => {
-              document.getElementById("tagname").value = clickElement.textContent;
+              document.getElementById("item_tag_form_tagname").value = clickElement.textContent;
               clickElement.remove();
             });
           });

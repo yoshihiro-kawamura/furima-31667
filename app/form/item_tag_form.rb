@@ -11,11 +11,9 @@ class ItemTagForm
     validates :shipping_charge_id,   numericality: { other_than: 1 , message: 'を入力してください'}
     validates :area_id,              numericality: { other_than: 0 , message: 'を入力してください'}
     validates :day_id,               numericality: { other_than: 1 , message: 'を入力してください'}
-    validates :price
     validates :image
   end
-  validates_inclusion_of :price, in: 300..9_999_999, message: 'が正しくありません'
-
+  # validates_inclusion_of :price, in: 300..9_999_999, message: 'を入力してください'
 
   def save
     # 配送先情報の登録

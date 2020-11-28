@@ -2,7 +2,6 @@
 if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
   // DOMの読み込み完了時に発火
   document.addEventListener('DOMContentLoaded', function(){
-    const ImageList = document.getElementById('image-list');
 
     // 関数なので呼び出されるまでは動かない。
     const createImageHTML = (blob) => {
