@@ -13,7 +13,8 @@ class ItemTagForm
     validates :day_id,               numericality: { other_than: 1 , message: 'を入力してください'}
     validates :image
   end
-  # validates_inclusion_of :price, in: 300..9_999_999, message: 'を入力してください'
+  
+  validates :price, :numericality => { :greater_than_or_equal_to => 300, :less_than_or_equal_to => 999999999 } 
 
   def save
     # 配送先情報の登録

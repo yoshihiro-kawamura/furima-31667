@@ -10,14 +10,14 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @itemtagform = ItemTagForm.new
+    @itemtagform = ItemTagForm.new()
     @item = Item.new
   end
 
   def create
     @itemtagform = ItemTagForm.new(item_params)
     # 新しいインスタンスを生成して、そこにparamsの情報をいれている
-    if @itemtagform.valid? 
+    if @itemtagform.valid?
       @itemtagform.save
       redirect_to items_path
     else
