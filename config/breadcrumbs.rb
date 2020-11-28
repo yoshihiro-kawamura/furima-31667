@@ -30,9 +30,6 @@ end
 #   parent :item_show
 # end
 
-
-
-
 # crumb :projects do
 #   link "Projects", projects_path
 # end
