@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_052555) do
+ActiveRecord::Schema.define(version: 2020_11_28_094047) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2020_11_26_052555) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_buys_on_item_id"
     t.index ["user_id"], name: "index_buys_on_user_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "comment"
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "destinations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -105,6 +115,8 @@ ActiveRecord::Schema.define(version: 2020_11_26_052555) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "buys", "items"
   add_foreign_key "buys", "users"
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "users"
   add_foreign_key "destinations", "buys"
   add_foreign_key "item_tags", "items"
   add_foreign_key "item_tags", "tags"
