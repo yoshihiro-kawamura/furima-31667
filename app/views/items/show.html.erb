@@ -101,29 +101,28 @@
     </div>
   </div>
   <%# /商品の概要 %>
-
-  <div class="comment-box">
-    <form>
-      <textarea class="comment-text"></textarea>
-      <p class="comment-warn">
-        相手のことを考え丁寧なコメントを心がけましょう。
-        <br>
-        不快な言葉遣いなどは利用制限や退会処分となることがあります。
-      </p>
-      <button type="submit" class="comment-btn">
-        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-        <span>コメントする<span>
-      </button>
-    </form>
-  </div>
-  <div class="links">
-    <a href="#" class="change-item-btn">
-      ＜ 前の商品
-    </a>
-    <a href="#" class="change-item-btn">
-      後ろの商品 ＞
-    </a>
-  </div>
+  <%# if user_signed_in? %>
+    <%= form_with(model: [@item, @comment], local: true) do |f| %>
+      <div class="comment-box">
+        <%= f.text_field :comment, class:"comment-text" %>
+          <p class="comment-warn">
+            相手のことを考え丁寧なコメントを心がけましょう。
+            <br>
+            不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          </p>
+        <%= f.submit "コメント送信", id:"comment-btn" %>
+        <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"40",height:"50"%>
+      </div>
+      <h3>コメント一覧</h3>
+      <div id="comments">
+        <% @comments.each do |comment| %>
+          <li class="comments_list">
+            <%= comment.comment %>
+            <%= comment.user.nickname %>
+          </li>
+        <% end %>
+      </div>
+    <% end %>
   <a href="#" class='another-item'><%= @item.category.name %>をもっと見る</a>
 </div>
 
