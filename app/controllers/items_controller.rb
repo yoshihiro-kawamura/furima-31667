@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @itemtagform = ItemTagForm.new()
+    @itemtagform = ItemTagForm.new
     @item = Item.new
   end
 
@@ -50,11 +50,12 @@ class ItemsController < ApplicationController
   def search
     # keywordは検索から入ってくる内容。入ってる内容が空なら、nilを入力するという内容
     # Jsができない部分をrailsが行う。
-    return nil if params[:tagname] == ""
+    return nil if params[:tagname] == ''
+
     # Tag.whereで一致してるか
     tag = Tag.where(['tagname LIKE ?', "%#{params[:tagname]}%"])
     # jsonの記述にしている。tagをtagnameにするという記述
-    render json:{ tagname: tag }
+    render json: { tagname: tag }
   end
 
   def destroy
@@ -72,6 +73,7 @@ class ItemsController < ApplicationController
     # mergeを入力しないと誰が投稿したのか判断できなくなるためErrorが表示されてしまう。
     params.require(:item_tag_form).permit(:name, :example, :price, :image, :category_id, :item_condition_id, :shipping_charge_id, :area_id, :day_id, :tagname).merge(user_id: current_user.id)
   end
+
   # .require(:item_tag_form)
   def set_item
     @item = Item.find(params[:id])

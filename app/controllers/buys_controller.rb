@@ -7,9 +7,7 @@ class BuysController < ApplicationController
     @item_destination = ItemDestination.new
     # ログインユーザーとItem出品者が同じならroot_pathへ遷移する。
     # または、Itemがbuyにいればroot pathへ遷移される（つまり、購入されている商品の購入ページに遷移しようとするとroot pathへ遷移されるという意味）
-    if @item.user == current_user || @item.buy != nil
-      redirect_to root_path 
-    end
+    redirect_to root_path if @item.user == current_user || !@item.buy.nil?
   end
 
   def create

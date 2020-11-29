@@ -6,15 +6,15 @@ class ItemTagForm
   with_options presence: true do
     validates :name
     validates :example
-    validates :category_id,          numericality: { other_than: 1 , message: 'を入力してください'}
-    validates :item_condition_id,    numericality: { other_than: 1 , message: 'を入力してください'}
-    validates :shipping_charge_id,   numericality: { other_than: 1 , message: 'を入力してください'}
-    validates :area_id,              numericality: { other_than: 0 , message: 'を入力してください'}
-    validates :day_id,               numericality: { other_than: 1 , message: 'を入力してください'}
+    validates :category_id,          numericality: { other_than: 1, message: 'を入力してください' }
+    validates :item_condition_id,    numericality: { other_than: 1, message: 'を入力してください' }
+    validates :shipping_charge_id,   numericality: { other_than: 1, message: 'を入力してください' }
+    validates :area_id,              numericality: { other_than: 0, message: 'を入力してください' }
+    validates :day_id,               numericality: { other_than: 1, message: 'を入力してください' }
     validates :image
   end
-  
-  validates :price, :numericality => { :greater_than_or_equal_to => 300, :less_than_or_equal_to => 999999999 } 
+
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 999_999_999 }
 
   def save
     # 配送先情報の登録
