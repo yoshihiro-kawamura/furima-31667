@@ -149,7 +149,7 @@
 
 .comment-text {
   width: 100%;
-  height: 100px;
+  height: 50px;
   padding: 10px;
   border: solid 2px #dedede;
   resize: none;
@@ -162,16 +162,20 @@
   text-align: left;
 }
 
-.comment-btn {
+#comment-btn {
   line-height: 48px;
   background-color: #3CCACE;
   border: 1px solid #3CCACE;
   color: #fff;
-  width: 50%;
+  width: 30%;
   min-width: 150px;
-  font-size: 18px;
+  font-size: 16px;
   border-radius: 100px;
   margin-bottom: 2vh;
+}
+
+#comments {
+  background-color: #fff;
 }
 
 .comment-flag {
@@ -180,7 +184,7 @@
 }
 
 .comment-flag-icon {
-  margin: 10px 5px 0 0;
+  margin: 5px 5px 0 0;
 }
 
 .links {
@@ -203,4 +207,8 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 23px;
+}
+
+.comment_u {
+  text-align: right;
 }

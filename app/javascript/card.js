@@ -6,7 +6,6 @@ const pay = () => {
   form.addEventListener("submit", (e) => {
 // ここで送信を止める。
     e.preventDefault();
-
 // ８行目でどのホームか取得している。（目印をつける）
     const formResult = document.getElementById("charge-form");
 // 目印をつける。その後に操作を行う。（rubyで言うnew）
