@@ -6,5 +6,12 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
+    resources :comments, only: [:create]
   end
 end
+
+# get 'messages/new'
+# resources :messages, only: [:create]
+# collection do
+#   get 'new'
+# end
